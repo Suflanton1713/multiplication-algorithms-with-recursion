@@ -62,4 +62,51 @@ package object Multiplicacion {
 
     decisionMultiplicar(a, b)
   }
+
+
+  def fastMultiply(a: Int, b: Int): Int = {
+
+    def digitosDecimales(a: Int, c: Int): Int = {
+      if ((a / 10) >= 1) digitosDecimales((a / 10), c + 1) else c
+    }
+    def separacionIzquierda(a: Int, m: Int): Int = a / math.pow(10, m).toInt
+
+    def separacionDerecha(a: Int, m: Int): Int = a % math.pow(10, m).toInt
+
+    def decisionMultiplicar(a: Int, b: Int): Int = if (a > b) multiplicarNumero(a, b) else multiplicarNumero(b, a)
+
+    def multiplicarNumero(a: Int, b: Int): Int = {
+      println(s"Multiplicaremos $a x $b")
+      val n = digitosDecimales(a, 1)
+      val n_dos = digitosDecimales(b, 1)
+      val m = n / 2
+      println(s"Digitos de a $n")
+      println(s"Digitos de b $n_dos")
+      println(s"m: $m")
+      if ((n == 1) && (n_dos == 1)) {
+        println(s"$a*$b")
+        a * b
+      }
+      else {
+
+        val mult_1= decisionMultiplicar(separacionIzquierda(a, m), separacionIzquierda(b, m))
+        val mult_2 = decisionMultiplicar(separacionDerecha(a, m), separacionDerecha(b, m))
+
+        println(s"10^(2*$m) * $mult_1 + " +
+          s"10^($m) * ($mult_1 + $mult_2 - ((${separacionIzquierda(a, m)} - ${separacionDerecha(a, m)}) * " +
+          s"(${separacionIzquierda(b, m)} - ${separacionDerecha(b, m)}))) + " +
+          s"$mult_2")
+
+
+        val resultado = math.pow(10, 2 * m).toInt * mult_1 + math.pow(10, m).toInt * (mult_1 + mult_2 - ( (separacionIzquierda(a, m) - separacionDerecha(a, m)) * (separacionIzquierda(b, m) - separacionDerecha(b, m))))  + mult_2
+
+        println(s"Resultado: $resultado")
+
+        resultado
+
+      }
+    }
+
+    decisionMultiplicar(a, b)
+  }
 }
