@@ -38,4 +38,40 @@ package object Multiplicacion {
 
     multiplicarNumero(a, b)
   }
+
+
+
+  def PeasantAlgorithmIterativo(a: Int, b: Int): Int = {
+    def dividir(x: Int): Int = x / 2
+
+    def multiplicarPorDos(x: Int): Int = x + x
+
+    def esImpar(x: Int): Boolean = x % 2 != 0
+
+    @tailrec
+    def algorithmIter(a: Int, b: Int, acc: Int): Int = {
+      if (a == 0) acc
+      else {
+        val nuevoAcum = if (esImpar(a)) acc + b else acc
+        algorithmIter(dividir(a), multiplicarPorDos(b), nuevoAcum)
+      }
+    }
+
+    algorithmIter(a, b, 0)
+  }
+
+  def PeasantAlgorithm_recursivoLineal(a: Int, b: Int): Int = {
+    def dividir(x: Int): Int = x / 2
+
+    def multiplicarPorDos(x: Int): Int = x + x
+
+    def esImpar(x: Int): Boolean = x % 2 != 0
+
+    def algorithmIter(a: Int, b: Int): Int = {
+      if (a == 1) b
+      else if (esImpar(a)) b + algorithmIter(dividir(a), multiplicarPorDos(b)) else algorithmIter(dividir(a), multiplicarPorDos(b))
+    }
+
+    algorithmIter(a, b)
+  }
 }
