@@ -32,28 +32,28 @@ package object Multiplicacion {
     //La función solo realiza a*b cuando son números de una cifra.
     //El número corresponde a n cifras tal que m = FunPiso((n/2))
     def multiplicarNumero(a: Int, b: Int): Int = {
-      println(s"Multiplicaremos $a x $b")
+      //println(s"Multiplicaremos $a x $b")
       val n = digitosDecimales(a, 1)
       val n_dos = digitosDecimales(b, 1)
       val m = n / 2
-      println(s"Digitos de a $n")
-      println(s"Digitos de b $n_dos")
-      println(s"m: $m")
+      //println(s"Digitos de a $n")
+      //println(s"Digitos de b $n_dos")
+      //println(s"m: $m")
       if ((n == 1) && (n_dos == 1)){
-        println(s"$a*$b")
+        //println(s"$a*$b")
         a * b
       }
       else{
-        println(s"10^(2*$m) * (${separacionIzquierda(a, m)} * ${separacionIzquierda(b, m)}) + " +
-          s"10^($m) * (${separacionDerecha(a, m)} * ${separacionIzquierda(b, m)}) + " +
-          s"(${separacionIzquierda(a, m)} * ${separacionDerecha(b, m)}) + " +
-          s"(${separacionDerecha(a, m)} * ${separacionDerecha(b, m)})")
+        //println(s"10^(2*$m) * (${separacionIzquierda(a, m)} * ${separacionIzquierda(b, m)}) + " +
+          //s"10^($m) * (${separacionDerecha(a, m)} * ${separacionIzquierda(b, m)}) + " +
+          //s"(${separacionIzquierda(a, m)} * ${separacionDerecha(b, m)}) + " +
+          //s"(${separacionDerecha(a, m)} * ${separacionDerecha(b, m)})")
 
         val resultado = (math.pow(10, 2 * m).toInt) * decisionMultiplicar(separacionIzquierda(a, m), separacionIzquierda(b, m)) +
           (math.pow(10, m).toInt * (decisionMultiplicar(separacionDerecha(a, m), separacionIzquierda(b, m)) + decisionMultiplicar(separacionIzquierda(a, m), separacionDerecha(b, m)))) +
           decisionMultiplicar(separacionDerecha(a, m), separacionDerecha(b, m))
 
-        println(s"Resultado: $resultado")
+        //println(s"Resultado: $resultado")
 
         resultado
 
@@ -76,15 +76,15 @@ package object Multiplicacion {
     def decisionMultiplicar(a: Int, b: Int): Int = if (a > b) multiplicarNumero(a, b) else multiplicarNumero(b, a)
 
     def multiplicarNumero(a: Int, b: Int): Int = {
-      println(s"Multiplicaremos $a x $b")
+      //println(s"Multiplicaremos $a x $b")
       val n = digitosDecimales(a, 1)
       val n_dos = digitosDecimales(b, 1)
       val m = n / 2
-      println(s"Digitos de a $n")
-      println(s"Digitos de b $n_dos")
-      println(s"m: $m")
+      //println(s"Digitos de a $n")
+      //println(s"Digitos de b $n_dos")
+      //println(s"m: $m")
       if ((n == 1) && (n_dos == 1)) {
-        println(s"$a*$b")
+        //println(s"$a*$b")
         a * b
       }
       else {
@@ -92,15 +92,15 @@ package object Multiplicacion {
         val mult_1= decisionMultiplicar(separacionIzquierda(a, m), separacionIzquierda(b, m))
         val mult_2 = decisionMultiplicar(separacionDerecha(a, m), separacionDerecha(b, m))
 
-        println(s"10^(2*$m) * $mult_1 + " +
-          s"10^($m) * ($mult_1 + $mult_2 - ((${separacionIzquierda(a, m)} - ${separacionDerecha(a, m)}) * " +
-          s"(${separacionIzquierda(b, m)} - ${separacionDerecha(b, m)}))) + " +
-          s"$mult_2")
+        //println(s"10^(2*$m) * $mult_1 + " +
+          //s"10^($m) * ($mult_1 + $mult_2 - ((${separacionIzquierda(a, m)} - ${separacionDerecha(a, m)}) * " +
+          //s"(${separacionIzquierda(b, m)} - ${separacionDerecha(b, m)}))) + " +
+          //s"$mult_2")
 
 
         val resultado = math.pow(10, 2 * m).toInt * mult_1 + math.pow(10, m).toInt * (mult_1 + mult_2 - ( (separacionIzquierda(a, m) - separacionDerecha(a, m)) * (separacionIzquierda(b, m) - separacionDerecha(b, m))))  + mult_2
 
-        println(s"Resultado: $resultado")
+        //println(s"Resultado: $resultado")
 
         resultado
 
@@ -108,5 +108,31 @@ package object Multiplicacion {
     }
 
     decisionMultiplicar(a, b)
+  }
+
+
+
+  def peasantAlgorithm_Iterativo(a: Int, b: Int): Int = {
+
+    @tailrec
+    def algorithmIter(a: Int, b: Int, acc: Int): Int = {
+      if (a == 0) acc
+      else {
+        val nuevoAcum = if (a%2!=0) acc + b else acc
+        algorithmIter(a/2, b+b, nuevoAcum)
+      }
+    }
+
+    algorithmIter(a, b, 0)
+  }
+
+  def peasantAlgorithm_recursivoLineal(a: Int, b: Int): Int = {
+
+    def algorithmIter(a: Int, b: Int): Int = {
+      if (a == 1) b
+      else if (a%2 !=0) b + algorithmIter(a/2, b+b) else algorithmIter(a/2, b+b)
+    }
+
+    algorithmIter(a, b)
   }
 }
