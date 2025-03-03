@@ -1,4 +1,13 @@
 import Multiplicacion._
+
+peasantAlgorithm_Iterativo(0, 10)
+peasantAlgorithm_Iterativo(10, 0)
+peasantAlgorithm_Iterativo(1, 7)
+peasantAlgorithm_Iterativo(6, 5)
+peasantAlgorithm_Iterativo(7, 3)
+peasantAlgorithm_Iterativo(15, 2)
+peasantAlgorithm_Iterativo(1023, 934454599)
+
 splitMultiply(1,2)
 splitMultiply(0,3)
 splitMultiply(1234,5678)

@@ -113,7 +113,6 @@ package object Multiplicacion {
 
 
   def peasantAlgorithm_Iterativo(a: Int, b: Int): Int = {
-
     @tailrec
     def algorithmIter(a: Int, b: Int, acc: Int): Int = {
       if (a == 0) acc
@@ -127,7 +126,8 @@ package object Multiplicacion {
   }
 
   def peasantAlgorithm_recursivoLineal(a: Int, b: Int): Int = {
-      if (a == 1) b
-      else if (a%2 !=0) b + peasantAlgorithm_recursivoLineal(a/2, b+b) else peasantAlgorithm_recursivoLineal(a/2, b+b)
+    if (a == 0) 0
+    else if (a == 1) b
+    else if (a%2 != 0) peasantAlgorithm_recursivoLineal(a/2, b+b) +  b else peasantAlgorithm_recursivoLineal(a/2, b+b)
   }
 }
