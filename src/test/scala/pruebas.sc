@@ -1,0 +1,45 @@
+import Multiplicacion._
+
+peasantAlgorithm(0, 5)
+peasantAlgorithm(1, 7)
+peasantAlgorithm(2, 3)
+peasantAlgorithm(5,4)
+peasantAlgorithm(8,6)
+peasantAlgorithm(9,3)
+peasantAlgorithm(1000,2000)
+peasantAlgorithm(123451111, 622227892)
+
+
+peasantAlgorithmIt(0, 10)
+peasantAlgorithmIt(10, 0)
+peasantAlgorithmIt(1, 7)
+peasantAlgorithmIt(6, 5)
+peasantAlgorithmIt(7, 3)
+peasantAlgorithmIt(15, 2)
+peasantAlgorithmIt(1023, 934454599)
+
+
+splitMultiply(1,2)
+splitMultiply(0,7)
+splitMultiply(25,45)
+splitMultiply(456,123)
+splitMultiply(123,5678)
+splitMultiply(9087,243)
+splitMultiply(234,293456)
+splitMultiply(9009,4567)
+splitMultiply(4567,9009)
+splitMultiply(12345,56789)
+splitMultiply(12345,567890)
+
+
+fastMultiply(1,9)
+fastMultiply(0,1)
+fastMultiply(99,11)
+fastMultiply(111,999)
+fastMultiply(961,4689)
+fastMultiply(985667,243)
+fastMultiply(2,2934567)
+fastMultiply(1000,8946)
+fastMultiply(8946,1000)
+fastMultiply(12345,56789)
+fastMultiply(12345,567890)
